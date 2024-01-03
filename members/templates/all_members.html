@@ -1,0 +1,37 @@
+{% extends 'master.html' %}
+{% block title %} All members {% endblock %}
+{% block content %}
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All books</li>
+      </ol>
+    </nav>
+    <h1 style="text-align: center">Books:</h1>
+    <!-- Syntax for in Django -->
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/findmember'">Find product, made by Author 3</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/findmember'">Find product, is avaliable</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/findmember'">Find product, made in 2023</button>
+    <br>
+    <ol>
+      <div class="row">
+      {% for id in mymember %}
+        <div class="card col-3" style="width: 18rem;">
+          {% if id.image %}
+            <img src="{{id.image.url}}" alt= 'Image' style="width:100%; height:auto;">
+          {% else %}
+            <img src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg" alt= 'Image' style="width:100%; height:auto;">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <!--Add syntax-->
+              <li><a href="details/{{id.id}}">{{id.title}}</a></li>
+            <a href="details/{{id.id}}" class="btn btn-primary">View more</a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </ol>
+
+    
+{% endblock %}
